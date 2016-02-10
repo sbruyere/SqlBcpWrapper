@@ -1,6 +1,7 @@
 # Overview
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/sbruyere/SqlBcpWrapper/master/LICENSE)
+![](https://img.shields.io/badge/language-C%23-blue.svg)
 
 This library is a .Net SQL BCP wrapper.
 
