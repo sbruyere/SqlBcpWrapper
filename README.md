@@ -3,7 +3,7 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/sbruyere/SqlBcpWrapper/master/LICENSE)
 ![](https://img.shields.io/badge/language-C%23-blue.svg)
 
-This library is a .Net SQL BCP wrapper.
+This library is a SQL BCP wrapper library for .Net application. It has been designed to copy the result set from a Transact-SQL statement to a file or a stream directly from your .Net code.
 
 When performing database maintenance you will certainly need to export data out of your database tables to a storage or directly in memory. 
 
