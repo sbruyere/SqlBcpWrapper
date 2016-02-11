@@ -13,36 +13,36 @@ Microsoft SQL Server includes a popular command-line utility named BCP for quick
 ## Usage
 
 ```c#
-        private static Stream SqlBcpDownload(DateTime startDate, DateTime endDate, int elementID)
-        {
-            const string SQL_RQST = "SELECT * FROM [{0}].[dbo].[UserSubscription] WHERE SubscriptionDate >= '{1:yyyy-MM-dd}' AND SubscriptionDate < '{2:yyyy-MM-dd}' AND ElementID = {3:d}";
+private static Stream SqlBcpDownload(DateTime startDate, DateTime endDate, int elementID)
+{
+    const string SQL_RQST = "SELECT * FROM [{0}].[dbo].[UserSubscription] WHERE SubscriptionDate >= '{1:yyyy-MM-dd}' AND SubscriptionDate < '{2:yyyy-MM-dd}' AND ElementID = {3:d}";
 
-            var sqlBcpWrapper = new SqlBcpWrapper("SqlServerName", "SqlUserName", "SqlUserPwd");
+    var sqlBcpWrapper = new SqlBcpWrapper("SqlServerName", "SqlUserName", "SqlUserPwd");
 
-            sqlBcpWrapper.OutputReceived += SqlBcpWrapper_OutputReceived;
-            sqlBcpWrapper.ErrorReceived += SqlBcpWrapper_ErrorReceived;
+    sqlBcpWrapper.OutputReceived += SqlBcpWrapper_OutputReceived;
+    sqlBcpWrapper.ErrorReceived += SqlBcpWrapper_ErrorReceived;
 
-            Stream myStream = new MemoryStream();
+    Stream myStream = new MemoryStream();
 
-            sqlBcpWrapper.Run(myStream,
-                SQL_RQST,
-                "TargetDatabaseName",
-                startDate.ToString(CultureInfo.InvariantCulture),
-                endDate.ToString(CultureInfo.InvariantCulture),
-                elementID.ToString());
+    sqlBcpWrapper.Run(myStream,
+        SQL_RQST,
+        "TargetDatabaseName",
+        startDate.ToString(CultureInfo.InvariantCulture),
+        endDate.ToString(CultureInfo.InvariantCulture),
+        elementID.ToString());
 
-            return myStream;
+    return myStream;
 
-        }
+}
         
-        private static void SqlBcpWrapper_ErrorReceived(object sender, DataReceivedEventArgs e)
-        {
-            Console.WriteLine(@"Error: {0}", e.Data);
-            throw new Exception(e.Data);
-        }
+private static void SqlBcpWrapper_ErrorReceived(object sender, DataReceivedEventArgs e)
+{
+    Console.WriteLine(@"Error: {0}", e.Data);
+    throw new Exception(e.Data);
+}
 
-        private static void SqlBcpWrapper_OutputReceived(object sender, DataReceivedEventArgs e)
-        {
-            Console.WriteLine(@"# {0}", e.Data);
-        }
+private static void SqlBcpWrapper_OutputReceived(object sender, DataReceivedEventArgs e)
+{
+    Console.WriteLine(@"# {0}", e.Data);
+}
 ```
